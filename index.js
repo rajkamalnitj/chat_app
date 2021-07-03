@@ -61,7 +61,8 @@ if(filter1.isProfane(message))
   return callback('profanity is not allowed');
 }
 
-
+if(user)
+{
 
  io.to(user.room).emit('message',generatemessage(user.username,message));
 
@@ -69,6 +70,7 @@ if(filter1.isProfane(message))
 
 
  callback();
+}
 })
 
 
