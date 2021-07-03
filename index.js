@@ -67,7 +67,7 @@ if(filter1.isProfane(message))
 
 
 
- 
+
  callback();
 })
 
@@ -76,8 +76,14 @@ if(filter1.isProfane(message))
 socket.on('sendlocation',(coords,callback)=>
 {
   const user=getUser(socket.id);
+if(user)
+{
     io.to(user.room).emit('locationmessage', generatelocationmessage(user.username,`https://google.com/maps?q=${coords.latitude},${coords.longitude}`));
     callback();
+}
+else{
+alert('add user first');
+}
 })
 
 
