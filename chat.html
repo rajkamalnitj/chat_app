@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>chat app</title>
+     <link rel="icon" href='/img/favicon.png'>
+     <link rel="stylesheet" href='/css/styles.min.css'>
+     <link rel="stylesheet" href='./chat.css'>
+     
+      
+    </head>
+<body>
+
+
+
+    <audio id="myAudio">
+        <source src="message_sent.mp3" >
+        <source src="uggg_sent_message.mp3" >
+      </audio>
+
+
+<div class="chat"> 
+         <div  id="sidebar" class="chat__sidebar"></div>
+
+              <div class="chat__main" style=" background-image: url('wallpaper12.jpg')">
+
+                      <div  style="color:white"   id="messages" class="chat__messages"></div>
+
+<div  class="compose">
+    <form id="message-form">
+        <input  name="message" placeholder="message" required autocomplete="off">
+      <button onclick="playAudio()">send</button>
+   
+  
+   
+   
+          </form>
+   
+           <button  onclick="pauseAudio()" id="send-location" >send location</button>
+</div>
+                       
+                
+  </div>
+
+                 </div>
+
+
+<script id="message-template" type="text/html">
+<div class="message">
+
+<p>
+
+    <span class="message__name">{{username}}</span>
+    <span class="message__meta">{{ createdat}}</span>
+</p>
+<p>{{message}}</p>
+
+    </div>
+
+
+</script>
+
+
+
+<script id="location-message-template" type="text/html">
+    <div class="message">
+
+
+        <p>
+
+            <span class="message__name"> {{username}}</span>
+            <span class="message__meta">{{ createdat}}</span>
+        </p>
+    <p><a href="{{url}}" target="_blank">my current location</a></p>
+    
+        </div>
+    
+    
+    </script>
+
+
+
+
+<script id="sidebar-template" type="text/html"> 
+<h2 class="room-title"> room:-{{room}}</h2>
+<h2 class="list-title">chat member</h2>
+<ul class="users">
+{{#users}}
+<li>{{username}}</li>
+{{/users}}
+</ul>
+
+</script>
+
+
+<script>
+var x = document.getElementById("myAudio"); 
+
+function playAudio() { 
+  x.play(); 
+} 
+
+function pauseAudio() { 
+  x.pause(); 
+} 
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/chat.js"></script>
+</body>
+</html>
